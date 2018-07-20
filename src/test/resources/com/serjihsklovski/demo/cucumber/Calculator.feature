@@ -1,4 +1,4 @@
-Feature: our Calculator parses expressions and execute them
+Feature: our Calculator parses expressions and executes them
 
   Scenario Outline: arithmetic expressions execution
     Given we have a code line "<code-line>"
