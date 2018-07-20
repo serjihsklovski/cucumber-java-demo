@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.serjihsklovski.demo.cucumber'
+version = '0.1.0'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+task cucumber(dependsOn: testClasses) {
+    doLast {
+        javaexec {
+            main = 'cucumber.api.cli.Main'
+            classpath = configurations.testRuntimeClasspath + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'com.serjihsklovski.demo.cucumber', 'src/test/resources']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'io.cucumber:cucumber-java:3.0.2'
+    testCompile 'io.cucumber:cucumber-junit:3.0.2'
+    testCompile 'junit:junit:4.12'
+}
